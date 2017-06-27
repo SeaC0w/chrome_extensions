@@ -1,0 +1,31 @@
+body {
+  width: auto;
+  height: auto;
+  background-color: #ffffe6;
+}
+
+p {
+  color: black;
+  font-size: 18px;
+}
+
+button {
+  color: black;
+  background-color: #00cc99;
+  font-size: 14px;
+  border-radius: 10%;
+  border: 2px solid #000000;
+}
+
+#d1 {
+  text-align: center;
+}
+
+#d2 {
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+#d3 {
+  text-align: center;
+}
