@@ -1,0 +1,13 @@
+{
+"manifest_version": 2,
+"name": "Bee-moh.chrome",
+"version": "0.5",
+"description": "Saves all tabs in the current window to a bookmark folder.",
+"permissions": ["tabs", "bookmarks"],
+"browser_action": {
+  "default_icon": "icon.png"
+},
+"background": {
+  "scripts": ["background.js"]
+}
+}
