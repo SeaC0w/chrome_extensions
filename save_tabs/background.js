@@ -12,3 +12,15 @@
 //       });
 //     });
 //   });
+// chrome.webRequest.onBeforeRequest.addListener(
+//         function(details) {
+//           if (details.url.indexOf("facebook.com") != -1) {
+//             console.log("alert");
+//             alert("ALERT!");
+//             chrome.tabs.create({"url": "https://www.reddit.com/r/Overwatch/"});
+//           }
+//         });
+chrome.webRequest.onBeforeRequest.addListener(
+        function(details) { return {cancel: true}; },
+        {urls: ["*://www.facebook.com/*"]},
+        ["blocking"]);

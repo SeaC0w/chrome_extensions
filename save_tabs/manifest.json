@@ -3,7 +3,8 @@
 "name": "Bee-moh.chrome",
 "version": "0.5",
 "description": "Saves all tabs in the current window to a bookmark folder.",
-"permissions": ["tabs", "bookmarks"],
+"permissions": ["tabs", "bookmarks", "webRequest", "webRequestBlocking",
+                "http://*/*", "https://*/*"],
 "browser_action": {
   "default_icon": "icon.png",
   "default_popup": "popup.html"
