@@ -1,0 +1,16 @@
+{
+"manifest_version": 2,
+"name": "Project Work",
+"version": "0.1",
+"description": "For blocking specific sites.",
+"permissions": ["webRequest", "webRequestBlocking",
+                "http://*/*", "https://*/*", "storage"],
+"browser_action": {
+  "default_icon": "icon.png",
+  "default_popup": "popup.html"
+},
+"background": {
+  "scripts": ["background.js"]
+},
+"options_page": "options.html"
+}
