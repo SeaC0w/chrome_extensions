@@ -7,14 +7,14 @@ chrome.storage.sync.get({
   for (item in items.sites) {
     blocks.push("*://" + items.sites[item] + "/*");
   }
-  console.log(blocks)
   chrome.webRequest.onBeforeRequest.addListener(
-          function(details) { return {cancel: true}; },
+          function(details) {
+            // chrome.tabs.create({"url": "https://www.reddit.com/r/Overwatch/"});
+            // return;
+            // details.url = "https://en.wikipedia.org/wiki/My_Little_Pony%3A_Friendship_Is_Magic";
+            // return {cancel: true};
+            chrome.tabs.update({url: "https://en.wikipedia.org/wiki/My_Little_Pony%3A_Friendship_Is_Magic"});
+          },
           {urls: blocks},
           ["blocking"]);
 });
-
-// chrome.webRequest.onBeforeRequest.addListener(
-//         function(details) { return {cancel: true}; },
-//         {urls: ["*://www.facebook.com/*", "*://www.reddit.com/*"]},
-//         ["blocking"]);

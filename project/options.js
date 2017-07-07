@@ -7,23 +7,24 @@ function save_options() {
     sites: []
   }, function(items) {
     sites = items.sites;
+    if (sites.find(function(item) {
+       return (item == stop);
+    })) {
+      document.getElementById('status').textContent = 'Site already present.';
+      document.getElementById('block').value = 'www.example.com';
+      return;
+    }
     sites.push(stop);
-    console.log(sites);
     chrome.storage.sync.set({
       sites: sites
     }, function() {
-      // Update status to let user know options were saved.
-      var status = document.getElementById('status');
-      status.textContent = 'Options saved.';
-      setTimeout(function() {
-        status.textContent = '';
-      }, 750);
+      chrome.tabs.reload();
     });
   });
 }
 
-// Restores select box and checkbox state using the preferences
-// stored in chrome.storage.
+// Restores list of sites blocked to the options page
+// as a checkbox list to allow removal of sites from blocked list
 function restore_options() {
   // Use default value color = 'red' and likesColor = true.
   chrome.storage.sync.get({
@@ -31,10 +32,47 @@ function restore_options() {
   }, function(items) {
     document.getElementById('list_sites').innerHTML = '';
     for (item in items.sites) {
-      document.getElementById('list_sites').innerHTML += items.sites[item] + ' <br>';
+      document.getElementById('list_sites').innerHTML += '<input type="checkbox" id="check' +
+       item + '" name="bsites">' + items.sites[item] + ' <br>';
     }
   });
 }
+
+// handles unblocking of selected sites
+function unblock() {
+  chrome.storage.sync.get({
+    sites: []
+  }, function(items) {
+    var blocked = items.sites;
+    var arr = [];
+    for (item in blocked) {
+      arr.push(document.getElementById('check' + item).checked);
+    }
+    var track = (arr.length-1);
+    for (i=(arr.length-1); i >= 0; i--) {
+      if (arr[i] == true) {
+        var temp = blocked[track];
+        blocked[track] = blocked[i];
+        blocked[i] = temp;
+        track--;
+      }
+    }
+    for (i = 1; i < (arr.length - track); i++) {
+      blocked.pop();
+    }
+    chrome.storage.sync.set({
+      sites: blocked
+    }, function() {
+      if (arr.length - track == 1){
+        document.getElementById('status2').textContent = 'No sites selected.';
+      }
+      else {
+        chrome.tabs.reload();
+      }
+    });
+  });
+}
+
 document.addEventListener('DOMContentLoaded', restore_options);
-document.getElementById('save').addEventListener('click',
-    save_options);
+document.getElementById('save').addEventListener('click', save_options);
+document.getElementById('unblock').addEventListener('click', unblock);
