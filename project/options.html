@@ -2,24 +2,31 @@
 <html>
 <head>
   <title>Project Work Options</title>
+  <link rel="stylesheet" type="text/css" href="options.css">
 </head>
 <body>
 
-<h2> Options Page </h2> <br>
+<h1> Options Page </h1> <br>
 
-<form id="f1">
-  Website to redirect:<br>
-  <input id="block" type="text" value="www.example.com">
-  <br><br>
-</form>
+<div id="d1">
+    <h3>Website to redirect:</h3>
+    <input id="block" type="text" placeholder="www.example.com">
+    <br>
 
-<div id="status"></div>
-<button id="save">Add to List</button>
+  <p id="status"></p>
+  <button id="save">Add to List</button>
+  <br> <br>
+</div>
+
+<h3 id="p1">List of added sites:</h3><br>
+<div id="d2">
+  <form id="list_sites"></form>
+</div>
 <br>
-<form id="list_sites"></form>
-<br>
-<div id="status2"></div>
-<button id="unblock">Remove from List</button>
+<div id="d3">
+  <p id="status2"></p>
+  <button id="unblock">Remove from List</button>
+</div>
 
 <script src="options.js"></script>
 </body>
