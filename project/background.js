@@ -1,5 +1,5 @@
 
-// blocking code, currently redirects to Wikipedia page for My_Little_Pony
+// blocking code, currently shows BLOCK alert before canceling request
 chrome.storage.sync.get({
   sites: []
 }, function(items) {
@@ -7,12 +7,10 @@ chrome.storage.sync.get({
   for (item in items.sites) {
     blocks.push("*://" + items.sites[item] + "/*");
   }
+  //webRequest functionality still a little hazy
   chrome.webRequest.onBeforeRequest.addListener(
           function(details) {
-            // return {cancel: true};
             if (blocks[0]) {
-              //chrome.tabs.update({url:
-                //"https://en.wikipedia.org/wiki/My_Little_Pony%3A_Friendship_Is_Magic"});
                 alert("BLOCK");
                 return {cancel: true};
             }

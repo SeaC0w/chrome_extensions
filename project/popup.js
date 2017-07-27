@@ -7,9 +7,23 @@ document.addEventListener('DOMContentLoaded', function() {
   document.getElementById("b2").addEventListener("click", clickedb2);
 });
 
-// placeholder button
+// deletes all sites listed to interact with
 function clickedb1() {
-  document.getElementById("p1").innerHTML = "Wololo!";
+  chrome.storage.sync.get({
+    sites: []
+  }, function(items) {
+    var sites = items.sites;
+    if (sites[0]) {
+      chrome.storage.sync.set({
+        sites: []
+      }, function() {});
+      document.getElementById("p1").innerHTML = "Sites reset!";
+    }
+    else {
+      document.getElementById("p1").innerHTML = "No sites to reset!";
+      return;
+    }
+  });
 }
 
 // accesses options page

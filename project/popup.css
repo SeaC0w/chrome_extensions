@@ -1,5 +1,5 @@
 body {
-  width: auto;
+  width: 150px;
   height: auto;
   background-color: #ffffe6;
 }
@@ -7,6 +7,12 @@ body {
 p {
   color: black;
   font-size: 18px;
+}
+
+h2 {
+  text-align: center;
+  color: grey;
+  border-bottom: 1px dotted black;
 }
 
 button {
@@ -19,9 +25,14 @@ button {
 
 #d1 {
   text-align: center;
+  padding-bottom: 10px;
 }
 
 #d2 {
   text-align: center;
   padding-bottom: 10px;
+}
+
+#d3 {
+  text-align: center;
 }
